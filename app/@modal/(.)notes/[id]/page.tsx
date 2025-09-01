@@ -21,10 +21,8 @@ export default async function NoteDetails({ params }: Props) {
   });
 
   return (
-    <Modal>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <NotePreviewClient />
-      </HydrationBoundary>
-    </Modal>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <NotePreviewClient />
+    </HydrationBoundary>
   );
 }

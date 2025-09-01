@@ -5,6 +5,7 @@ import css from './NotePreview.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { fetchNoteById } from '../../../../lib/api';
+import Modal from '../../../../components/Modal/Modal';
 
 import NoteError from './error';
 import Loading from '../../../loading';
@@ -26,16 +27,18 @@ export default function NoteDetailsClient() {
   if (error) return <NoteError error={error} />;
 
   return (
-    <div className={css.container}>
-      {note && (
-        <div className={css.item}>
-          <div className={css.header}>
-            <h2>{note?.title}</h2>
+    <Modal>
+      <div className={css.container}>
+        {note && (
+          <div className={css.item}>
+            <div className={css.header}>
+              <h2>{note?.title}</h2>
+            </div>
+            <p className={css.content}>{note?.content}</p>
+            <p className={css.date}>{note?.createdAt}</p>
           </div>
-          <p className={css.content}>{note?.content}</p>
-          <p className={css.date}>{note?.createdAt}</p>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </Modal>
   );
 }
